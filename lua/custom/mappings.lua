@@ -3,35 +3,26 @@ local functions = require "custom.functions"
 local map = vim.keymap.set
 
 -- Normal Mode
-map("n", ";", ":", { desc = "CMD enter command mode" })
-map("n", "n", "nzzzv", { desc = "center buffer on the next match of the search" })
-map("n", "N", "Nzzzv", { desc = "center buffer on the last match of the search" })
-map("n", "<leader>to", functions.center_cursor, { desc = "keep buffer centered on line under cursor" })
-map("n", "<leader>sw", functions.toggle_wrap, { desc = "toggle text wrapping" })
-
--- Insert Mode
-map("i", "jk", "<ESC>")
+map("n", "n", "nzzzv", { desc = "Center buffer on the next match of \"/\" or \"?\"" })
+map("n", "N", "Nzzzv", { desc = "Center buffer on the last match of \"/\" or \"?\"" })
+map("n", "<leader>tc", functions.center_cursor, { desc = "Keep buffer centered on cursor" })
+map("n", "<leader>tw", functions.toggle_wrap, { desc = "Toggle text wrapping" })
 
 -- Visual Mode
-map("v", ">", ">gv", { desc = "keep selection after right-indenting (>)" })
-map("v", "<", "<gv", { desc = "keep selection after left-indenting (<)" })
+map("v", ">", ">gv", { desc = "Indent right (and keep selection)" })
+map("v", "<", "<gv", { desc = "Indent left (and keep selection)" })
 map("v", "<A-/>", "<esc>/\\%V", { desc = "search forwards inside the actual selection" })
 map("v", "<A-?>", "<esc>?\\%V", { desc = "search backwards inside the actual selection" })
 
--- Terminal Mode
-map("t", "<Esc>", "<C-\\><C-n>", { desc = "switch to normal mode" })
-
--- Multiple Modes
-map({ "n", "i", "v" }, "<C-s>", "<cmd> w <cr>")
-
 -- To use `ALT+{h,j,k,l}` to navigate windows from any mode
-local m = "<C-\\><C-n><C-w>"
-map({ "n", "i", "t" }, "<M-h>", m .. "h")
-map({ "n", "i", "t" }, "<M-j>", m .. "j")
-map({ "n", "i", "t" }, "<M-k>", m .. "k")
-map({ "n", "i", "t" }, "<M-l>", m .. "l")
+local t_n = "<C-\\><C-n>" -- switch to normal mode (including in terminal insert mode)
+local w =  t_n .. "<C-w>"
+map({ "n", "i", "t" }, "<M-h>", w .. "h", { desc = "Go to the left window" })
+map({ "n", "i", "t" }, "<M-j>", w .. "j", { desc = "Go to the down window" })
+map({ "n", "i", "t" }, "<M-k>", w .. "k", { desc = "Go to the up window" })
+map({ "n", "i", "t" }, "<M-l>", w .. "l", { desc = "Go to the right window" })
 
-map({ "n", "i", "t" }, "<M-left>", m .. "h")
-map({ "n", "i", "t" }, "<M-down>", m .. "j")
-map({ "n", "i", "t" }, "<M-up>", m .. "k")
-map({ "n", "i", "t" }, "<M-right>", m .. "l")
+map({ "n", "i", "t" }, "<M-left>", w .. "h", { desc = "Go to the left window" })
+map({ "n", "i", "t" }, "<M-down>", w .. "j", { desc = "Go to the down window" })
+map({ "n", "i", "t" }, "<M-up>", w .. "k", { desc = "Go to the up window" })
+map({ "n", "i", "t" }, "<M-right>", w .. "l", { desc = "Go to the right window" })
