@@ -22,3 +22,6 @@ o.inccommand = "split"
 o.scrolloff = 0
 o.sidescrolloff = 20
 o.shell = functions.get_shell()
+o.foldmethod = "expr"
+o.foldexpr = "nvim_treesitter#foldexpr()"
+o.foldlevelstart = 99
