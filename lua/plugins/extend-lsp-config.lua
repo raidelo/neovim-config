@@ -17,6 +17,9 @@ return {
         ruff = {
           mason = not in_termux(), -- Android platform is unsupported.
         },
+        clangd = {
+          mason = not in_termux(), -- Android platform is unsupported.
+        },
       },
     },
   },
