@@ -13,13 +13,7 @@ return {
         codelldb = {
           mason = not In_termux(), -- Android platform is unsupported.
         },
-        ruff = {
-          mason = not In_termux(), -- Android platform is unsupported.
-        },
         clangd = {
-          mason = not In_termux(), -- Android platform is unsupported.
-        },
-        html = {
           mason = not In_termux(), -- Android platform is unsupported.
         },
       },
