@@ -22,6 +22,9 @@ return {
         cssls = {
           mason = true,
         },
+        rust_analyzer = {
+          mason = true,
+        },
       },
     },
   },
